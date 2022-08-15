@@ -6,56 +6,52 @@ package fcu.sep.fcushop.model;
 
 public class People {
 
-  private String peoplename;
+  private String id;
 
-  private String peopleid;
+  private String sid;
+
+  private String name;
 
   private String password;
 
-  private String address;
-
-  private String birthday;
-
-  private String sex;
-
   private String mail;
 
-  /**
-   * People.
-   */
-
-  public People() {
-  }
 
   /**
    * People.
    */
 
-  public People(String peoplename, String account, String password,
-                String address, String birthday, String sex, String mail) {
-    this.peoplename = peoplename;
-    this.peopleid = peopleid;
+  public People(String id, String sid, String name,
+                String password, String mail) {
+    this.id = id;
+    this.sid = sid;
+    this.name = name;
     this.password = password;
-    this.address = address;
-    this.birthday = birthday;
-    this.sex = sex;
     this.mail = mail;
   }
 
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getSid() {
+    return sid;
+  }
+
+  public void setSid(String sid) {
+    this.sid = sid;
+  }
+
   public String getPeople_name() {
-    return peoplename;
+    return name;
   }
 
-  public void setPeople_name(String peoplename) {
-    this.peoplename = peoplename;
-  }
-
-  public String getAccount() {
-    return peopleid;
-  }
-
-  public void setAccount(String account) {
-    this.peopleid = peopleid;
+  public void setPeople_name(String name) {
+    this.name = name;
   }
 
   public String getPassword() {
@@ -64,30 +60,6 @@ public class People {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getAddress() {
-    return address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-  public String getBirthday() {
-    return birthday;
-  }
-
-  public void setBirthday(String birthday) {
-    this.birthday = birthday;
-  }
-
-  public String getSex() {
-    return sex;
-  }
-
-  public void setSex(String sex) {
-    this.sex = sex;
   }
 
   public String getMail() {

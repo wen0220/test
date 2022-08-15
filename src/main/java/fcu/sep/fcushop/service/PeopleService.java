@@ -27,13 +27,13 @@ public class PeopleService {
    * peopleservice.
    */
 
-  public String login(String account, String password) {
+  public String login(String name, String password) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select count(*)"
           + " from bookstore.people where account =:account and password =:password";
       int c;
       c = connection.createQuery(query)
-          .addParameter("account", account)
+          .addParameter("name", name)
           .addParameter("password", password)
           .executeScalar(Integer.class);
       if (c == 1) {
@@ -98,7 +98,7 @@ public class PeopleService {
 
   public List<People> getProducts() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select ID peopleid,NAME peoplename"
+      String query = "select ID id, SID sid, NAME name, PASSWORD password, EMAIL mail"
           + " from cardgame.people";
 
       return connection.createQuery(query).executeAndFetch(People.class);

@@ -4,11 +4,14 @@ import fcu.sep.fcushop.model.People;
 import fcu.sep.fcushop.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -22,14 +25,14 @@ public class PeopleController {
   @Autowired
   PeopleService peopleManager;
 
-  @RequestMapping(value = "/login", method = RequestMethod.POST)
-  @ResponseBody
-  public String login(
-      @RequestParam("account") String account,
-      @RequestParam("password") String password
-  ) {
-    return peopleManager.login(account, password);
-  }
+//  @RequestMapping(value = "/login", method = RequestMethod.POST)
+//  @ResponseBody
+//  public String login(
+//      @RequestParam("account") String account,
+//      @RequestParam("password") String password
+//  ) {
+//    return peopleManager.login(account, password);
+//  }
 
   @RequestMapping(value = "/register_product", method = RequestMethod.GET)
   @ResponseBody
@@ -60,7 +63,12 @@ public class PeopleController {
     return peopleManager.getProducts();
   }
 
-
-
+  @PostMapping("/login")
+  public String login(
+      @RequestParam("name") String name,
+      @RequestParam("password") String password
+  ) {
+    return peopleManager.login(name, password);
+  }
 
 }
