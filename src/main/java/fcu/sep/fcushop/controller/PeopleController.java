@@ -34,41 +34,45 @@ public class PeopleController {
 //    return peopleManager.login(account, password);
 //  }
 
-  @RequestMapping(value = "/register_product", method = RequestMethod.GET)
-  @ResponseBody
-  public String registerProduct(
-      @RequestParam("account") String account,
-      @RequestParam("password") String password,
-      @RequestParam("name") String name,
-      @RequestParam("address") String address,
-      @RequestParam("birthday") String birthday,
-      @RequestParam("sex") String sex,
-      @RequestParam("mail") String mail
-  ) {
-    return peopleManager.aaRegister(account, password, name, address, birthday, sex, mail);
-  }
+//  @RequestMapping(value = "/register_product", method = RequestMethod.GET)
+//  @ResponseBody
+//  public String registerProduct(
+//      @RequestParam("account") String account,
+//      @RequestParam("password") String password,
+//      @RequestParam("name") String name,
+//      @RequestParam("address") String address,
+//      @RequestParam("birthday") String birthday,
+//      @RequestParam("sex") String sex,
+//      @RequestParam("mail") String mail
+//  ) {
+//    return peopleManager.aaRegister(account, password, name, address, birthday, sex, mail);
+//  }
 
-  @RequestMapping(value = "/profile", method = RequestMethod.GET)
-  @ResponseBody
-  public String updatePeople(
-      @RequestParam("account") String account,
-      @RequestParam("password") String password,
-      @RequestParam("orginpass") String orginpass
-  ) {
-    return peopleManager.aaUpdatePeople(account, password, orginpass);
-  }
+//  @RequestMapping(value = "/profile", method = RequestMethod.GET)
+//  @ResponseBody
+//  public String updatePeople(
+//      @RequestParam("account") String account,
+//      @RequestParam("password") String password,
+//      @RequestParam("orginpass") String orginpass
+//  ) {
+//    return peopleManager.aaUpdatePeople(account, password, orginpass);
+//  }
 
   @GetMapping("/products")
   public List<People> getProducts() {
     return peopleManager.getProducts();
   }
 
-  @PostMapping("/login")
+  @PostMapping("/login")//PostMapping
   public String login(
-      @RequestParam("name") String name,
+      @RequestParam("username") String name,
       @RequestParam("password") String password
   ) {
-    return peopleManager.login(name, password);
+    return peopleManager.login(name, password);//name, password
+//    ResponseEntity<Object> response;
+//    int result = PeopleService.login(name,password);
+//    response = new ResponseEntity<>(result, HttpStatus.OK);
+//    return response;
   }
 
 }

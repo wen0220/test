@@ -37,9 +37,9 @@ public class PeopleService {
           .addParameter("password", password)
           .executeScalar(Integer.class);
       if (c == 1) {
-        return "OK";
+        return "1";//登入成功
       } else {
-        return "NO";
+        return "0";
       }
     }
   }
@@ -104,6 +104,10 @@ public class PeopleService {
       return connection.createQuery(query).executeAndFetch(People.class);
     }
   }
+
+//  public String login(){
+//    return "111";
+//  }
 }
 
 
