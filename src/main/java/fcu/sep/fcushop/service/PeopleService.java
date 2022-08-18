@@ -36,7 +36,6 @@ public class PeopleService {
           .addParameter("name", name)
           .addParameter("password", password)
           .executeScalar(Integer.class);
-      System.out.println(c);
       if (c == 1) {
         return "success";//登入成功
       } else {
@@ -49,26 +48,37 @@ public class PeopleService {
    * peopleservice.
    */
 
-  public String aaRegister(String account, String password, String name,
-                         String address, String birthday, String sex, String mail) {
+  public String register(String name, String password, String sid,
+                         String email) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into people (ACCOUNT, PASSWORD, NAME, ADDRESS, BIRTHDAY, SEX, MAIL) "
-          + "VALUES(:account, :password, :name, :address, :birthday, :sex, :mail)";
+      String query = "select count(*)"
+          + " from cardgame.people where sid = :sid";
+      int c;
+      c = connection.createQuery(query)
+          .addParameter("sid", sid)
+          .executeScalar(Integer.class);
 
-      System.out.println(query);
-      connection.createQuery(query)
-          .addParameter("account", account)
-          .addParameter("password", password)
-          .addParameter("name", name)
-          .addParameter("address", address)
-          .addParameter("birthday", birthday)
-          .addParameter("sex", sex)
-          .addParameter("mail", mail)
-          .executeUpdate();
-      return "Success";
+      if(c == 0){
+        String query1 = "insert into cardgame.people ( NAME, PASSWORD, SID, EMAIL) "
+            + "VALUES(:name, :password, :sid, :email)";
+        connection.createQuery(query1)
+            //.addParameter("ID", count)
+            .addParameter("name", name)
+            .addParameter("password", password)
+            .addParameter("sid", sid)
+            .addParameter("email", email)
+            .executeUpdate();
+        return "success";
+      }
+      else if(c == 1){//帳號存在
+        return "exist";
+      }
     }
+    return "fail";
   }
-
+//  public String Register(){
+//    return "111";
+//  }
   /**
    * peopleservice.
    */

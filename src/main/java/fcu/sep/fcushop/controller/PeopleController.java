@@ -25,14 +25,6 @@ public class PeopleController {
   @Autowired
   PeopleService peopleManager;
 
-//  @RequestMapping(value = "/login", method = RequestMethod.POST)
-//  @ResponseBody
-//  public String login(
-//      @RequestParam("account") String account,
-//      @RequestParam("password") String password
-//  ) {
-//    return peopleManager.login(account, password);
-//  }
 
 //  @RequestMapping(value = "/register_product", method = RequestMethod.GET)
 //  @ResponseBody
@@ -58,6 +50,9 @@ public class PeopleController {
 //    return peopleManager.aaUpdatePeople(account, password, orginpass);
 //  }
 
+  /**
+   * 登入.
+   */
   @GetMapping("/products")
   public List<People> getProducts() {
     return peopleManager.getProducts();
@@ -69,10 +64,24 @@ public class PeopleController {
       @RequestParam("password") String password
   ) {
     return peopleManager.login(name, password);//name, password
-//    ResponseEntity<Object> response;
-//    int result = PeopleService.login(name,password);
-//    response = new ResponseEntity<>(result, HttpStatus.OK);
-//    return response;
   }
-
+  /**
+   * 註冊.
+   */
+//  @RequestMapping(value = "/register", method = RequestMethod.GET)//, method = RequestMethod.GET
+//  @ResponseBody
+  @PostMapping("/register")
+  public String register(
+      @RequestParam("username") String name,
+      @RequestParam("password") String password,
+      @RequestParam("sid") String sid,
+      @RequestParam("email") String email
+  ) {
+    return peopleManager.register(name, password, sid, email);
+  }
+//  @GetMapping("/register")//PostMapping
+//  public String register(
+//  ) {
+//    return peopleManager.Register();//name, password
+//  }
 }

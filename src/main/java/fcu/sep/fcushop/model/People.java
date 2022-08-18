@@ -14,7 +14,7 @@ public class People {
 
   private String password;
 
-  private String mail;
+  private String email;
 
 
   /**
@@ -22,12 +22,12 @@ public class People {
    */
 
   public People(String id, String sid, String name,
-                String password, String mail) {
+                String password, String email) {
     this.id = id;
     this.sid = sid;
     this.name = name;
     this.password = password;
-    this.mail = mail;
+    this.email = email;
   }
 
   public String getId() {
@@ -63,11 +63,11 @@ public class People {
   }
 
   public String getMail() {
-    return mail;
+    return email;
   }
 
-  public void setMail(String mail) {
-    this.mail = mail;
+  public void setMail(String email) {
+    this.email = email;
   }
 
 
