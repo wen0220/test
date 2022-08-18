@@ -46,11 +46,11 @@ public class People {
     this.sid = sid;
   }
 
-  public String getPeople_name() {
+  public String getname() {
     return name;
   }
 
-  public void setPeople_name(String name) {
+  public void setname(String name) {
     this.name = name;
   }
 

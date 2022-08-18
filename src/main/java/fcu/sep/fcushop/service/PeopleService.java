@@ -30,16 +30,17 @@ public class PeopleService {
   public String login(String name, String password) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select count(*)"
-          + " from bookstore.people where account =:account and password =:password";
+          + " from cardgame.people where NAME = :name and password =:password";
       int c;
       c = connection.createQuery(query)
           .addParameter("name", name)
           .addParameter("password", password)
           .executeScalar(Integer.class);
+      System.out.println(c);
       if (c == 1) {
-        return "1";//登入成功
+        return "success";//登入成功
       } else {
-        return "0";
+        return "fail";
       }
     }
   }
