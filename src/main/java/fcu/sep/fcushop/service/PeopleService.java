@@ -27,6 +27,15 @@ public class PeopleService {
    * peopleservice.
    */
 
+  public List<People> getProducts() {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select ID id, SID sid, NAME name, PASSWORD password, EMAIL mail"
+          + " from cardgame.people";
+
+      return connection.createQuery(query).executeAndFetch(People.class);
+    }
+  }
+
   public String login(String name, String password) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select count(*)"
@@ -83,42 +92,40 @@ public class PeopleService {
    * peopleservice.
    */
 
-  public String aaUpdatePeople(String account, String password, String orginpass) {
+  public String update(String name, String sid, String password) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select PASSWORD" + " from bookstore.people where ACCOUNT =:account";
-      var c = connection.createQuery(query)
-          .addParameter("account", account)
-          .executeScalar(String.class);
-      int result = c.compareTo(orginpass);
-      System.out.println(result);
+//      String query = "select PASSWORD" + " from bookstore.people where ACCOUNT =:account";
+//      var c = connection.createQuery(query)
+//          .addParameter("account", account)
+//          .executeScalar(String.class);
+//      int result = c.compareTo(orginpass);
+//      System.out.println(result);
 
-      if (result == 0) {
-        String query1 = "Update bookstore.people "
-            + "SET PASSWORD=:password WHERE ACCOUNT = :account";
-        System.out.println(query1);
-        connection.createQuery(query1)
-            .addParameter("account", account)
-            .addParameter("password", password)
-            .executeUpdate();
-        return "OK";
-      } else {
-        return "NO";
+        String query = "select count(*)"
+            + " from cardgame.people where sid = :sid and name =:name";
+        int c;
+        c = connection.createQuery(query)
+            .addParameter("sid", sid)
+            .addParameter("name", name)
+            .executeScalar(Integer.class);
+
+        if(c==1){
+          String query1 = "Update cardgame.people "
+              + "SET PASSWORD=:password WHERE sid = :sid";
+          System.out.println(query1);
+          connection.createQuery(query1)
+              .addParameter("password", password)
+              .addParameter("sid", sid)
+              .executeUpdate();
+          return "success";
+        }
+        else if(c==0){
+          return "noexist";
+        }
+        return "fail";
       }
-    }
   }
 
-  public List<People> getProducts() {
-    try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select ID id, SID sid, NAME name, PASSWORD password, EMAIL mail"
-          + " from cardgame.people";
-
-      return connection.createQuery(query).executeAndFetch(People.class);
-    }
-  }
-
-//  public String login(){
-//    return "111";
-//  }
 }
 
 

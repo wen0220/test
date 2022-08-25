@@ -79,6 +79,15 @@ public class PeopleController {
   ) {
     return peopleManager.register(name, password, sid, email);
   }
+
+  @PostMapping("/update")//PostMapping
+  public String update(
+      @RequestParam("username") String name,
+      @RequestParam("sid") String sid,
+      @RequestParam("newpassword") String password
+  ) {
+    return peopleManager.update(name, sid, password);//name, password
+  }
 //  @GetMapping("/register")//PostMapping
 //  public String register(
 //  ) {
