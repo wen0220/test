@@ -61,10 +61,11 @@ public class PeopleService {
                          String email) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select count(*)"
-          + " from cardgame.people where sid = :sid";
+          + " from cardgame.people where sid = :sid or name =:name";
       int c;
       c = connection.createQuery(query)
           .addParameter("sid", sid)
+          .addParameter("name", name)
           .executeScalar(Integer.class);
 
       if(c == 0){
@@ -112,7 +113,6 @@ public class PeopleService {
         if(c==1){
           String query1 = "Update cardgame.people "
               + "SET PASSWORD=:password WHERE sid = :sid";
-          System.out.println(query1);
           connection.createQuery(query1)
               .addParameter("password", password)
               .addParameter("sid", sid)
