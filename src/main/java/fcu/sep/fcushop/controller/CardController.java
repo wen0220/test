@@ -1,6 +1,5 @@
 package fcu.sep.fcushop.controller;
 import fcu.sep.fcushop.model.Card;
-import fcu.sep.fcushop.model.People;
 import fcu.sep.fcushop.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ public class CardController {
   public List<Card> getProducts() {
     return cardManager.getProducts();
   }
+
 }
 
 
