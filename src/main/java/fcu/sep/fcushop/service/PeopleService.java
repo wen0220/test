@@ -95,12 +95,6 @@ public class PeopleService {
 
   public String update(String name, String sid, String password) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-//      String query = "select PASSWORD" + " from bookstore.people where ACCOUNT =:account";
-//      var c = connection.createQuery(query)
-//          .addParameter("account", account)
-//          .executeScalar(String.class);
-//      int result = c.compareTo(orginpass);
-//      System.out.println(result);
 
         String query = "select count(*)"
             + " from cardgame.people where sid = :sid and name =:name";

@@ -40,4 +40,27 @@ public class RecordService {
       return "s";
     }
   }
+
+  public List<Record> rank() {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select NAME name, POINT point"
+          + " from cardgame.record order by point desc";
+
+      //return connection.createQuery(query).executeScalar(String.class);
+      return connection.createQuery(query)
+          //.addParameter("name", name)
+          .executeAndFetch(Record.class);
+    }
+  }
+
+  public List<Record> myrecord(String name) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select POINT point from cardgame.record " +
+          "where NAME = :name order by point desc";
+      return connection.createQuery(query)
+          .addParameter("name", name)
+          .executeAndFetch(Record.class);
+    }
+  }
+
 }

@@ -62,8 +62,6 @@ public class PeopleController {
   /**
    * 註冊.
    */
-//  @RequestMapping(value = "/register", method = RequestMethod.GET)//, method = RequestMethod.GET
-//  @ResponseBody
   @PostMapping("/register")
   public String register(
       @RequestParam("username") String name,

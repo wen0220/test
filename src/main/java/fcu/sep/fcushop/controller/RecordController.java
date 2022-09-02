@@ -1,6 +1,5 @@
 package fcu.sep.fcushop.controller;
 
-import fcu.sep.fcushop.model.People;
 import fcu.sep.fcushop.model.Record;
 import fcu.sep.fcushop.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,21 @@ public class RecordController {
       @RequestParam("username") String name,
       @RequestParam("point") String point
   ) {
-    return recordManager.score(name, point);//name, password
+    return recordManager.score(name, point);
+  }
+
+  //@GetMapping("/ranking")
+  @PostMapping("/ranking")
+  public List<Record> ranking() {
+    //return recordManager.rank();
+    return recordManager.rank();
+  }
+
+  @PostMapping("/myrecord")
+  public List<Record> myrecord(
+      @RequestParam("username") String name
+  ) {
+    return recordManager.myrecord(name);
   }
 
 }
