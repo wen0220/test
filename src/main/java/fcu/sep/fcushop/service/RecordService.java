@@ -2,7 +2,7 @@ package fcu.sep.fcushop.service;
 
 import fcu.sep.fcushop.database.Sql2oDbHandler;
 
-import fcu.sep.fcushop.model.People;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
@@ -29,11 +29,12 @@ public class RecordService {
     }
   }
 
-  public String score(String name, String point) {
+  public String score(String id, String name, String point) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into cardgame.record ( NAME, POINT) "
-          + "VALUES(:name, :point)";
+      String query = "insert into cardgame.record ( ID ,NAME, POINT) "
+          + "VALUES(:id, :name, :point)";
       connection.createQuery(query)
+          .addParameter("id", id)
           .addParameter("name", name)
           .addParameter("point", point)
           .executeUpdate();
@@ -45,10 +46,7 @@ public class RecordService {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select NAME name, POINT point"
           + " from cardgame.record order by point desc";
-
-      //return connection.createQuery(query).executeScalar(String.class);
       return connection.createQuery(query)
-          //.addParameter("name", name)
           .executeAndFetch(Record.class);
     }
   }
@@ -63,4 +61,14 @@ public class RecordService {
     }
   }
 
+  public String gameid(String name) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select MAX(ID) id from cardgame.record ";
+      String c;
+      c=connection.createQuery(query)
+          .executeScalar(String.class);
+      System.out.println(c);
+      return c;
+    }
+  }
 }
