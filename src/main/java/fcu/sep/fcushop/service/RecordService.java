@@ -54,7 +54,7 @@ public class RecordService {
   public List<Record> myrecord(String name) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select POINT point from cardgame.record " +
-          "where NAME = :name order by point desc";
+          "where NAME = :name order by id desc";
       return connection.createQuery(query)
           .addParameter("name", name)
           .executeAndFetch(Record.class);
@@ -71,4 +71,6 @@ public class RecordService {
       return c;
     }
   }
+
+
 }
