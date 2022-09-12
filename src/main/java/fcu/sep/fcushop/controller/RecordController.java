@@ -24,9 +24,10 @@ public class RecordController {
   public String point(
       @RequestParam("gameid") String id,
       @RequestParam("username") String name,
-      @RequestParam("point") String point
+      @RequestParam("point") String point,
+      @RequestParam("match") String mate
   ) {
-    return recordManager.score( id,name, point);
+    return recordManager.score( id,name, point, mate);
   }
 
   //@GetMapping("/ranking")
