@@ -43,10 +43,9 @@ public class CardService {
   public String info(){
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select DETAIL detail from cardgame.ocard" +
-          "where ID = 2";
+          "where ocard.ID = '2'";
       String c;
       c=connection.createQuery(query)
-          //.addParameter("id", id)
           .executeScalar(String.class);
       return c;
     }

@@ -10,12 +10,15 @@ public class Card {
 
   private String day;
 
+  private String detail;
+
   public Card(String id, String name, String point,
-                String day) {
+                String day, String detail) {
     this.id = id;
     this.name = name;
     this.point = point;
     this.day = day;
+    this.detail = detail;
   }
 
   public String getId() {
@@ -48,6 +51,14 @@ public class Card {
 
   public void setDay(String day) {
     this.day = day;
+  }
+
+  public String getDetail() {
+    return detail;
+  }
+
+  public void setDetail(String detail) {
+    this.detail = detail;
   }
 
 }

@@ -27,8 +27,7 @@ public class CardController {
   }
 
   @GetMapping("/info")
-  public String oinfo(
-      //@RequestParam("cardid") String id
+  public String info(
   ) {
     return cardManager.info();
   }
