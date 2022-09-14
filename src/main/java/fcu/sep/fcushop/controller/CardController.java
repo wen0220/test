@@ -19,6 +19,19 @@ public class CardController {
     return cardManager.getProducts();
   }
 
+  @PostMapping("/oinfo")
+  public String oinfo(
+      @RequestParam("cardid") String id
+  ) {
+    return cardManager.oinfo(id);
+  }
+
+  @GetMapping("/info")
+  public String oinfo(
+      //@RequestParam("cardid") String id
+  ) {
+    return cardManager.info();
+  }
 }
 
 

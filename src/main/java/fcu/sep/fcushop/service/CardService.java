@@ -22,11 +22,33 @@ public class CardService {
   public List<Card> getProducts() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id,  NAME name, POINT point, DAY day"
-          + " from cardgame.card";
+          + " from cardgame.ocard";
 
       return connection.createQuery(query).executeAndFetch(Card.class);
     }
   }
 
+  public String oinfo(String id){
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select DETAIL detail from cardgame.ocard" +
+          "where ID =:id";
+      String c;
+      c=connection.createQuery(query)
+          .addParameter("id", id)
+          .executeScalar(String.class);
+      return c;
+    }
+  }
 
+  public String info(){
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select DETAIL detail from cardgame.ocard" +
+          "where ID = 2";
+      String c;
+      c=connection.createQuery(query)
+          //.addParameter("id", id)
+          .executeScalar(String.class);
+      return c;
+    }
+  }
 }

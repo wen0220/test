@@ -55,7 +55,7 @@ public class Wrong {
     return myanswer;
   }
 
-  public void setmyanswer(String myanwser) {
+  public void setmyanswer(String myanswer) {
     this.myanswer = myanswer;
   }
 
