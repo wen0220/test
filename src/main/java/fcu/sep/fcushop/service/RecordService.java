@@ -1,13 +1,10 @@
 package fcu.sep.fcushop.service;
 
 import fcu.sep.fcushop.database.Sql2oDbHandler;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
 import fcu.sep.fcushop.model.Record;
-
 import java.util.List;
 
 @Service

@@ -3,7 +3,6 @@ package fcu.sep.fcushop.model;
 public class Record {
   private String id;
   private String name;
-
   private String point;
   private String mate;
 
