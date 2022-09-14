@@ -75,14 +75,22 @@ public class WrongService {
     }
   }
 
-  public List<Wrong> seewrong(String gameid) {
+  public List<Wrong> seewrong(String gameid) {//String gameid
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select COLOR color,  CARDID cardid" +
-          "from cardgame.wrong where GAMEID =37";
+      String query = "select *" +
+          "from cardgame.wrong where GAMEID = :gameid ";
 
       return connection.createQuery(query)
           .addParameter("gameid", gameid)
           .executeAndFetch(Wrong.class);
+    }
+  }
+
+  public List<Wrong> sWrong() {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select * from cardgame.wrong where GAMEID = '45' ";
+
+      return connection.createQuery(query).executeAndFetch(Wrong.class);
     }
   }
 }

@@ -53,11 +53,16 @@ public class WrongController {
     return wrongManager.addbwrong( gameid,username, cardid, myanswer,color);
   }
 
+  //@GetMapping("/seewrong")
   @PostMapping("/seewrong")
   public List<Wrong> seewrong(
       @RequestParam("gameid") String gameid
-
   ) {
-    return wrongManager.seewrong(gameid);
+    return wrongManager.seewrong(gameid);//gameid
+  }
+
+  @GetMapping("/swrong")
+  public List<Wrong> sWrong() {
+    return wrongManager.sWrong();
   }
 }

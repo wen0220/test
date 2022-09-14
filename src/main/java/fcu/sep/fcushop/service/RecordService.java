@@ -28,7 +28,7 @@ public class RecordService {
 
   public String score(String id, String name, String point, String mate) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into cardgame.record ( ID ,NAME, POINT, MATE) "
+      String query = "insert into cardgame.record (ID, NAME, POINT, MATE) "
           + "VALUES(:id, :name, :point, :mate)";
       connection.createQuery(query)
           .addParameter("id", id)
@@ -69,6 +69,7 @@ public class RecordService {
       return c;
     }
   }
+
 
 
 }

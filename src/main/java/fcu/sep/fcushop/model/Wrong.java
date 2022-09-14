@@ -1,19 +1,33 @@
 package fcu.sep.fcushop.model;
 
 public class Wrong {
+
+  private String id;
+
   private String gameid;
+
   private String username;
+
   private String cardid;
+
   private String myanswer;
+
   private String color;
 
-  public Wrong(String gameid,String username, String cardid, String myanswer, String color) {
+  public Wrong(String id, String gameid,String username, String cardid, String myanswer, String color) {
+    this.id = id;
     this.gameid = gameid;
     this.username = username;
     this.cardid = cardid;
     this.myanswer = myanswer;
     this.color = color;
   }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) { this.id = id;}
 
   public String getGameId() {
     return gameid;
