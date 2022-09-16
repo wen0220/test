@@ -26,6 +26,20 @@ public class CardController {
     return cardManager.oinfo(id);
   }
 
+  @PostMapping("/ginfo")
+  public String ginfo(
+      @RequestParam("cardid") String id
+  ) {
+    return cardManager.ginfo(id);
+  }
+
+  @PostMapping("/binfo")
+  public String binfo(
+      @RequestParam("cardid") String id
+  ) {
+    return cardManager.binfo(id);
+  }
+
   @GetMapping("/info")
   public String info(
   ) {

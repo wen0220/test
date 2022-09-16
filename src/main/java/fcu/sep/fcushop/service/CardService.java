@@ -31,7 +31,31 @@ public class CardService {
   public String oinfo(String id){
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select DETAIL detail from cardgame.ocard" +
-          "where ID =:id";
+          " where ID =:id";
+      String c;
+      c=connection.createQuery(query)
+          .addParameter("id", id)
+          .executeScalar(String.class);
+      return c;
+    }
+  }
+
+  public String ginfo(String id){
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select DETAIL detail from cardgame.gcard" +
+          " where ID =:id";
+      String c;
+      c=connection.createQuery(query)
+          .addParameter("id", id)
+          .executeScalar(String.class);
+      return c;
+    }
+  }
+
+  public String binfo(String id){
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "select DETAIL detail from cardgame.bcard" +
+          " where ID =:id";
       String c;
       c=connection.createQuery(query)
           .addParameter("id", id)
@@ -43,7 +67,7 @@ public class CardService {
   public String info(){
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select DETAIL detail from cardgame.ocard" +
-          "where ocard.ID = '2'";
+          " where ocard.ID = '2'";
       String c;
       c=connection.createQuery(query)
           .executeScalar(String.class);
