@@ -73,7 +73,7 @@ public class RecordService {
   public String storeid(String name, String mate, String gameid) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "insert into cardgame.record (GAMEID, NAME, MATE) "
-          + "VALUES(:gameid, :name, :mate)";
+          + " VALUES(:gameid, :name, :mate)";
       connection.createQuery(query)
           .addParameter("gameid", gameid)
           .addParameter("name", name)
@@ -85,8 +85,7 @@ public class RecordService {
 
   public String storepoint(String name, String gameid, String point) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into cardgame.record (POINT) "
-          + "VALUES(:point) where gameid = :gameid and name = :name";
+      String query = "UPDATE cardgame.record  set POINT=:point where gameid = :gameid and name = :name";
       connection.createQuery(query)
           .addParameter("gameid", gameid)
           .addParameter("name", name)
