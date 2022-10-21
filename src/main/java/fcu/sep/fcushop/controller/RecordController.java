@@ -67,6 +67,6 @@ public class RecordController {
       @RequestParam("gameid") String gameid,
       @RequestParam("point") String point
   ) {
-    return recordManager.storeid(name, gameid, point);
+    return recordManager.storepoint(name, gameid, point);
   }
 }
