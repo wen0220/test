@@ -61,7 +61,7 @@ public class RecordService {
 
   public String gameid(String name) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select MAX(ID) gameid from cardgame.record ";
+      String query = "select MAX(gameid) gameid from cardgame.record ";
       String c;
       c=connection.createQuery(query)
           .executeScalar(String.class);
@@ -79,9 +79,21 @@ public class RecordService {
           .addParameter("name", name)
           .addParameter("mate", mate)
           .executeUpdate();
-      return "s";
+      return "success";
     }
   }
 
+  public String storepoint(String name, String gameid, String point) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "insert into cardgame.record (POINT) "
+          + "VALUES(:point) where gameid = :gameid and name = :name";
+      connection.createQuery(query)
+          .addParameter("gameid", gameid)
+          .addParameter("name", name)
+          .addParameter("point", point)
+          .executeUpdate();
+      return "success";
+    }
+  }
 
 }

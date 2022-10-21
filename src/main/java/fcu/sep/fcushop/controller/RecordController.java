@@ -60,4 +60,13 @@ public class RecordController {
     return recordManager.storeid(name, mate, gameid);
   }
 
+
+  @PostMapping("/storepoint")
+  public String storepoint(
+      @RequestParam("username") String name,
+      @RequestParam("gameid") String gameid,
+      @RequestParam("point") String point
+  ) {
+    return recordManager.storeid(name, gameid, point);
+  }
 }
