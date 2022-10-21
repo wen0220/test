@@ -85,7 +85,7 @@ public class RecordService {
 
   public String storepoint(String name, String gameid, String point) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "UPDATE cardgame.record  set POINT=:point where gameid = :gameid and name = :name";
+      String query = "UPDATE cardgame.record  set POINT = :point where gameid = :gameid and name = :name";
       connection.createQuery(query)
           .addParameter("gameid", gameid)
           .addParameter("name", name)

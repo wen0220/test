@@ -58,7 +58,7 @@ public class WrongController {
   public List<Wrong> seewrong(
       @RequestParam("gameid") String gameid
   ) {
-    return wrongManager.seewrong(gameid);//gameid
+    return wrongManager.seewrong(gameid);
   }
 
   @GetMapping("/swrong")
