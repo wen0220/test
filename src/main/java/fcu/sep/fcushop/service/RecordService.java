@@ -26,12 +26,12 @@ public class RecordService {
     }
   }
 
-  public String score(String id, String name, String point, String mate) {
+  public String score(String gameid, String name, String point, String mate) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into cardgame.record (ID, NAME, POINT, MATE) "
-          + "VALUES(:id, :name, :point, :mate)";
+      String query = "insert into cardgame.record (GAMEID, NAME, POINT, MATE) "
+          + "VALUES(:gameid, :name, :point, :mate)";
       connection.createQuery(query)
-          .addParameter("id", id)
+          .addParameter("gameid", gameid)
           .addParameter("name", name)
           .addParameter("point", point)
           .addParameter("mate", mate)
@@ -51,7 +51,7 @@ public class RecordService {
 
   public List<Record> myrecord(String name) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select POINT point, MATE mate, ID id from cardgame.record " +
+      String query = "select POINT point, MATE mate, GAMEID gameid from cardgame.record " +
           "where NAME = :name order by id desc";
       return connection.createQuery(query)
           .addParameter("name", name)
@@ -61,7 +61,7 @@ public class RecordService {
 
   public String gameid(String name) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select MAX(ID) id from cardgame.record ";
+      String query = "select MAX(ID) gameid from cardgame.record ";
       String c;
       c=connection.createQuery(query)
           .executeScalar(String.class);
@@ -70,6 +70,18 @@ public class RecordService {
     }
   }
 
+  public String storeid(String name, String mate, String gameid) {
+    try (Connection connection = sql2oDbHandler.getConnector().open()) {
+      String query = "insert into cardgame.record (GAMEID, NAME, MATE) "
+          + "VALUES(:gameid, :name, :mate)";
+      connection.createQuery(query)
+          .addParameter("gameid", gameid)
+          .addParameter("name", name)
+          .addParameter("mate", mate)
+          .executeUpdate();
+      return "s";
+    }
+  }
 
 
 }

@@ -22,12 +22,12 @@ public class RecordController {
 
   @PostMapping("/point")
   public String point(
-      @RequestParam("gameid") String id,
+      @RequestParam("gameid") String gameid,
       @RequestParam("username") String name,
       @RequestParam("point") String point,
       @RequestParam("match") String mate
   ) {
-    return recordManager.score( id,name, point, mate);
+    return recordManager.score( gameid,name, point, mate);
   }
 
   //@GetMapping("/ranking")
@@ -44,12 +44,20 @@ public class RecordController {
     return recordManager.myrecord(name);
   }
 
-  //@GetMapping("/gameid")
   @PostMapping("/gameid")
   public String gameid(
       @RequestParam("username") String name
   ) {
     return recordManager.gameid(name);
+  }
+
+  @PostMapping("/storeid")
+  public String storeid(
+      @RequestParam("username") String name,
+      @RequestParam("mate") String mate,
+      @RequestParam("gameid") String gameid
+  ) {
+    return recordManager.storeid(name, mate, gameid);
   }
 
 }
