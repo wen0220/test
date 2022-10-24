@@ -74,12 +74,13 @@ public class WrongService {
     }
   }
 
-  public List<Wrong> seewrong(String gameid) {//String gameid
+  public List<Wrong> seewrong(String username, String gameid) {//String gameid
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select *" +
-          "from cardgame.wrong where GAMEID = :gameid order by color asc";
+          "from cardgame.wrong where GAMEID = :gameid and USERNAME = :username order by color asc";
 
       return connection.createQuery(query)
+          .addParameter("username", username)
           .addParameter("gameid", gameid)
           .executeAndFetch(Wrong.class);
     }
