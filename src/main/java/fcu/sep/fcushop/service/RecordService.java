@@ -26,20 +26,6 @@ public class RecordService {
     }
   }
 
-  public String score(String gameid, String name, String point, String mate) {
-    try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "insert into cardgame.record (GAMEID, NAME, POINT, MATE) "
-          + "VALUES(:gameid, :name, :point, :mate)";
-      connection.createQuery(query)
-          .addParameter("gameid", gameid)
-          .addParameter("name", name)
-          .addParameter("point", point)
-          .addParameter("mate", mate)
-          .executeUpdate();
-      return "s";
-    }
-  }
-
   public List<Record> rank() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select NAME name, POINT point"

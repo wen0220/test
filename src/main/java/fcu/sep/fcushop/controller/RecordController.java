@@ -20,16 +20,6 @@ public class RecordController {
     return recordManager.getPoint();
   }
 
-  @PostMapping("/point")
-  public String point(
-      @RequestParam("gameid") String gameid,
-      @RequestParam("username") String name,
-      @RequestParam("point") String point,
-      @RequestParam("match") String mate
-  ) {
-    return recordManager.score( gameid,name, point, mate);
-  }
-
   //@GetMapping("/ranking")
   @PostMapping("/ranking")
   public List<Record> ranking() {
