@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
 import fcu.sep.fcushop.model.People;
 
+import java.net.http.HttpRequest;
 import java.util.List;
 
 /**
@@ -37,6 +38,7 @@ public class PeopleService {
   }
 
   public String login(String name, String password) {
+//    header("Access-Control-Allow-Origin: *");
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select count(*)"
           + " from cardgame.people where NAME = :name and password =:password";
@@ -46,8 +48,11 @@ public class PeopleService {
           .addParameter("password", password)
           .executeScalar(Integer.class);
       if (c == 1) {
+        System.out.println("success");
+
         return "success";//登入成功
       } else {
+        System.out.println("fail");
         return "fail";
       }
     }
