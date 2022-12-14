@@ -30,15 +30,17 @@ public class RecordService {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select NAME name, POINT point"
           + " from cardgame.record order by point desc";
+      System.out.println("rank");
       return connection.createQuery(query)
           .executeAndFetch(Record.class);
     }
   }
 
-  public List<Record> myrecord(String name) {
+  public List<Record> myrecord(String name) {//String name
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
-      String query = "select POINT point, MATE mate, GAMEID gameid from cardgame.record " +
+      String query = "select POINT point, MATE mate, GAMEID gameid from cardgame.record "+
           "where NAME = :name order by id desc";
+      System.out.println("myrecord");
       return connection.createQuery(query)
           .addParameter("name", name)
           .executeAndFetch(Record.class);

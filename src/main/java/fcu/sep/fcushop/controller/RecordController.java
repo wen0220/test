@@ -31,7 +31,8 @@ public class RecordController {
   public List<Record> myrecord(
       @RequestParam("username") String name
   ) {
-    return recordManager.myrecord(name);
+    System.out.println("myrecord1");
+    return recordManager.myrecord(name);//name
   }
 
   @PostMapping("/gameid")
